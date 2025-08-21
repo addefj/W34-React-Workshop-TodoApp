@@ -20,7 +20,7 @@ const TodoForm = ({onAddTodo}) => {
   return (
     
             <div className="container w-75 bg-white border rounded p-3 mt-4">
-              <form id="form"  noValidate>
+              <form>
                 <div>
                   <label htmlFor="title" className="form-label">
                     Title
@@ -31,9 +31,9 @@ const TodoForm = ({onAddTodo}) => {
                     id="title"
                     placeholder="Enter title"
                     name="title"
-                    required
+                  
                   />
-                  <div className="invalid-feedback">Please enter a title.</div>
+                  
                 </div>
 
                 <div className="mt-3">
@@ -46,11 +46,9 @@ const TodoForm = ({onAddTodo}) => {
                     id="description"
                     placeholder="Enter description"
                     name="description"
-                    required
+                    
                   ></textarea>
-                  <div className="invalid-feedback">
-                    Please enter a description.
-                  </div>
+                  
                 </div>
 
                 <div className="row mt-3">
@@ -63,11 +61,9 @@ const TodoForm = ({onAddTodo}) => {
                       className="form-control"
                       id="date"
                       name="date"
-                      required
+                      
                     />
-                    <div className="invalid-feedback">
-                      Please choose a date.
-                    </div>
+                    
                   </div>
 
                   <div className="col-12 col-md-6 mt-3 mt-md-0 order-2">
