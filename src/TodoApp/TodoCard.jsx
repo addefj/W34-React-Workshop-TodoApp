@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Card = () => {
 
-const todoItems = [
-  { id: 1, title: "Todo 1", description: "Description for Todo 1", created: "2025-08-21", due: "2025-08-30", assignee: "Måns Jönsson", attachments: 2 },
-  { id: 2, title: "Todo 2", description: "Description for Todo 2", created: "2025-08-22", due: "2025-08-31", assignee: "Anna Svensson", attachments: 1 }
-];
+const Card = ({todoItems}) => {
+
+{/* Sample data for demonstration purposes */}
+{/* const todoItems = [
+    {
+      id: 1,
+      title: "Todo 1",
+      description: "Description for Todo 1",
+      created: "2025-08-21",
+      due: "2025-08-30",
+      assignee: "Måns Jönsson",
+      attachments: 2,
+    },
+    {
+      id: 2,
+      title: "Todo 2",
+      description: "Description for Todo 2",
+      created: "2025-08-22",
+      due: "2025-08-31",
+      assignee: "Anna Svensson",
+      attachments: 1,
+    },
+  ];
+ */}
 
 
   return (
@@ -35,63 +54,67 @@ const todoItems = [
           </div>
         </div>
 
-{/* Start of conditional rendering */}
-{todoItems.length === 0 ? ( <li className="list-group-item border-0 py-0">No items in your Todolist</li>) : 
-(todoItems.map((item) => (
-
-          <div id="card-body" className="card-body" key={item.id}>
-          <div className="row align-items-center">
-            <div className="col-md-6">
-              <h5 className="card-title mb-0">{item.title}</h5>
-            </div>
-            <div className="col-md-6 text-end">
-              <div className="d-inline-block me-3 text-muted">
-                <small>Created: {item.created}</small>
+        {/* Start of conditional rendering */}
+        {todoItems.length === 0 ? (
+          <li className="list-group-item border-0 py-0">
+            No items in your Todolist
+          </li>
+        ) : (
+          todoItems.map((item) => (
+            <div id="card-body" className="card-body" key={item.id}>
+              <div className="row align-items-center">
+                <div className="col-md-6">
+                  <h5 className="card-title mb-0">{item.title}</h5>
+                </div>
+                <div className="col-md-6 text-end">
+                  <div className="d-inline-block me-3 text-muted">
+                    <small>Created: {item.created}</small>
+                  </div>
+                  <div className="btn-group">
+                    <button
+                      className="mark-as-done btn btn-sm btn-outline-secondary"
+                      title="Mark as done"
+                    >
+                      <i className="bi bi-check-circle"></i>
+                    </button>
+                    <button
+                      className="btn btn-sm btn-outline-secondary"
+                      title="Edit"
+                    >
+                      <i className="bi bi-pencil"></i>
+                    </button>
+                    <button
+                      className="delete-btn btn btn-sm btn-outline-secondary"
+                      title="Delete"
+                    >
+                      <i className="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="btn-group">
-                <button
-                  className="mark-as-done btn btn-sm btn-outline-secondary"
-                  title="Mark as done"
-                >
-                  <i className="bi bi-check-circle"></i>
-                </button>
-                <button className="btn btn-sm btn-outline-secondary" title="Edit">
-                  <i className="bi bi-pencil"></i>
-                </button>
-                <button
-                  className="delete-btn btn btn-sm btn-outline-secondary"
-                  title="Delete"
-                >
-                  <i className="bi bi-trash"></i>
-                </button>
+
+              <p className="card-text mb-1">{item.description}</p>
+
+              <div className="row gx-2 gy-0">
+                <div className="col-12 col-sm-auto">
+                  <small className="text-muted">
+                    <i className="bi bi-calendar-event"></i> Due: {item.due}
+                  </small>
+                </div>
+                <div className="col-12 col-sm-auto">
+                  <span className="badge bg-info text-dark">
+                    {item.assignee}
+                  </span>
+                </div>
+
+                <div className="col-12 col-sm-auto">
+                  <span className="badge bg-secondary">{item.attachments}</span>
+                </div>
               </div>
             </div>
-          </div>
-
-          <p className="card-text mb-1">
-            {item.description}
-          </p>
-
-          <div className="row gx-2 gy-0">
-            <div className="col-12 col-sm-auto">
-              <small className="text-muted">
-                <i className="bi bi-calendar-event"></i> Due: {item.due}
-              </small>
-            </div>
-            <div className="col-12 col-sm-auto">
-              <span className="badge bg-info text-dark">{item.assignee}</span>
-            </div>
-
-            <div className="col-12 col-sm-auto">
-              <span className="badge bg-secondary">{item.attachments}</span>
-            </div>
-          </div>
-        </div>
-        
-            ))
-          )} 
-          {/* End of conditional rendering */}
-
+          ))
+        )}
+        {/* End of conditional rendering */}
       </div>
     </div>
   );

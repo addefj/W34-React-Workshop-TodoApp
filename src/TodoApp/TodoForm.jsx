@@ -1,6 +1,24 @@
 import React from 'react'
 
-const Form = () => {
+const Form = ({todoItems, setTodoItems}) => {
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+
+   const newTodo = {
+    id: todoItems.length + 1, // id generation
+    title: "Todo 1",
+    description: "Description for Todo 1",
+    created: new Date().toISOString().split("T")[0],
+    due: "2025-08-30",
+    assignee: "Måns Jönsson",
+    attachments: 2,
+  };
+
+  setTodoItems([...todoItems, newTodo]);
+}
+
+
   return (
     
             <div className="container w-75 bg-white border rounded p-3 mt-4">
@@ -103,6 +121,7 @@ const Form = () => {
                     type="submit"
                     id="submitForm"
                     className="btn btn-primary"
+                    onClick={handleSubmit}
                   >
                     + Add Todo
                   </button>
