@@ -1,31 +1,7 @@
 import React, { useState } from "react";
 
 
-const Card = ({todoItems}) => {
-
-{/* Sample data for demonstration purposes */}
-{/* const todoItems = [
-    {
-      id: 1,
-      title: "Todo 1",
-      description: "Description for Todo 1",
-      created: "2025-08-21",
-      due: "2025-08-30",
-      assignee: "Måns Jönsson",
-      attachments: 2,
-    },
-    {
-      id: 2,
-      title: "Todo 2",
-      description: "Description for Todo 2",
-      created: "2025-08-22",
-      due: "2025-08-31",
-      assignee: "Anna Svensson",
-      attachments: 1,
-    },
-  ];
- */}
-
+const TodoCard = ({todoItems}) => {
 
   return (
     <div className="container w-75 bg-white border rounded p-3 mt-4">
@@ -120,4 +96,4 @@ const Card = ({todoItems}) => {
   );
 };
 
-export default Card;
+export default TodoCard;

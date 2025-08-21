@@ -1,6 +1,6 @@
 import React from "react";
 import SidebarVertical from './SidebarVertical';
-import MainContent from "./MainContent";
+import MainContent from "./Todo";
 
 const App = () => {
 

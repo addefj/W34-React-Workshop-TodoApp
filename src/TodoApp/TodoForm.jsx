@@ -1,28 +1,26 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { addTodo } from './todoService';
 
-const Form = ({todoItems, setTodoItems}) => {
+const TodoForm = ({onAddTodo}) => {
 
-const handleSubmit = (event) => {
-  event.preventDefault();
-
-   const newTodo = {
-    id: todoItems.length + 1, // id generation
-    title: "Todo 1",
-    description: "Description for Todo 1",
-    created: new Date().toISOString().split("T")[0],
-    due: "2025-08-30",
-    assignee: "Måns Jönsson",
-    attachments: 2,
-  };
-
-  setTodoItems([...todoItems, newTodo]);
-}
-
+  const handleClick = (e) => {
+    const newTodo =  {
+      title: "Todo 1",
+      description: "Description for Todo 1",
+      created: "2025-08-21",
+      due: "2025-08-30",
+      assignee: "Måns Jönsson",
+      attachments: 2,
+    };
+    addTodo(newTodo);
+    onAddTodo(); // Call the function to reload the todo list
+    // reset the form elements
+  }
 
   return (
     
             <div className="container w-75 bg-white border rounded p-3 mt-4">
-              <form id="form" noValidate>
+              <form id="form"  noValidate>
                 <div>
                   <label htmlFor="title" className="form-label">
                     Title
@@ -118,10 +116,10 @@ const handleSubmit = (event) => {
 
                 <div className="mt-3 text-end">
                   <button
-                    type="submit"
+                    type="button"
                     id="submitForm"
                     className="btn btn-primary"
-                    onClick={handleSubmit}
+                    onClick={handleClick}
                   >
                     + Add Todo
                   </button>
@@ -132,4 +130,4 @@ const handleSubmit = (event) => {
   )
 }
 
-export default Form
+export default TodoForm
