@@ -32,7 +32,7 @@ const TodoCard = ({todoItems}) => {
 
         {/* Start of conditional rendering */}
         {todoItems.length === 0 ? (
-          <li className="list-group-item border-0 py-0">
+          <li className="list-group-item border-0 p-3">
             No items in your Todolist
           </li>
         ) : (
