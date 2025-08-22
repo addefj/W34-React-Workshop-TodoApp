@@ -3,27 +3,38 @@ import { addTodo } from "./todoService";
 import { useForm } from "react-hook-form";
 
 const TodoForm = ({ onAddTodo }) => {
+  
+  const [selectedFiles, setSelectedFiles] = useState([]); // State to hold selected attachments
+
+  const handleFileSelection = (e) => {
+    const newFiles = Array.from(e.target.files);
+    setSelectedFiles((prev) => [...prev, ...newFiles]);
+    e.target.value = ""; // Clear the input after selection
+  };
+
   const {
     register,
     handleSubmit,
-    formState: { errors }, 
-    reset
+    formState: { errors },
+    reset,
   } = useForm({
-  defaultValues: {
-    title: "",
-    description: "",
-    due: "",
-    assignee: "",
-    attachments: [],
-  }
-});
-
+    defaultValues: {
+      title: "",
+      description: "",
+      due: "",
+      assignee: "",
+      attachments: [],
+    },
+  });
 
   const onSubmit = (data) => {
-    addTodo(data);
+    const newTodo = { ...data, attachments: selectedFiles.map((f) => f.name) }; // Extract file names for attachments
+
+    addTodo(newTodo); // Add the new todo item using the service function
     onAddTodo(); // Call the function to reload the todo list
-    console.log(data);
+    console.log(newTodo);
     reset(); // Reset the form fields after submission
+    setSelectedFiles([]); // Clear the selected files
   };
 
   return (
@@ -113,17 +124,24 @@ const TodoForm = ({ onAddTodo }) => {
               id="attachments"
               name="attachments"
               multiple
+              onChange={handleFileSelection}
             />
             <button
               className="btn btn-outline-danger"
               type="button"
               id="clearAttachment"
+              onClick={() => setSelectedFiles([])}
             >
               &times;
             </button>
           </div>
 
-          <ul className="list-group mt-2 border rounded p-4" id="fileList"></ul>
+          {/* Preview file list */}
+          <ul className="list-group mt-3 border rounded p-2" id="fileList">
+            {selectedFiles.map((file, idx) => (
+              <li className="list-group-item border-0 p-0" key={file.name + file.lastModified}>{file.name}</li>
+            ))}
+          </ul>
         </div>
 
         <div className="mt-3 text-end">

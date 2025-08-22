@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-
-const TodoCard = ({todoItems}) => {
-
+const TodoCard = ({ todoItems }) => {
   return (
     <div className="container w-75 bg-white border rounded p-3 my-4">
       <div className="card mt-3">
@@ -84,7 +82,14 @@ const TodoCard = ({todoItems}) => {
                 </div>
 
                 <div className="col-12 col-sm-auto">
-                  <span className="badge bg-secondary">{item.attachments}</span>
+                  {item.attachments && item.attachments.length > 0 ? (
+                    <span className="badge bg-secondary">
+                      {item.attachments.length} attachment
+                      {item.attachments.length > 1 ? "s" : ""}
+                    </span>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </div>
