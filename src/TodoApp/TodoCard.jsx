@@ -4,7 +4,7 @@ import React, { useState } from "react";
 const TodoCard = ({todoItems}) => {
 
   return (
-    <div className="container w-75 bg-white border rounded p-3 mt-4">
+    <div className="container w-75 bg-white border rounded p-3 my-4">
       <div className="card mt-3">
         <div className="card-header">
           <div className="row align-items-center">
@@ -37,7 +37,7 @@ const TodoCard = ({todoItems}) => {
           </li>
         ) : (
           todoItems.map((item) => (
-            <div id="card-body" className="card-body" key={item.id}>
+            <div id="card-body" className="card-body border" key={item.id}>
               <div className="row align-items-center">
                 <div className="col-md-6">
                   <h5 className="card-title mb-0">{item.title}</h5>

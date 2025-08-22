@@ -6,19 +6,24 @@ const TodoForm = ({ onAddTodo }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }, 
+    reset
   } = useForm({
+  defaultValues: {
     title: "",
     description: "",
     due: "",
     assignee: "",
     attachments: [],
-  });
+  }
+});
+
 
   const onSubmit = (data) => {
     addTodo(data);
     onAddTodo(); // Call the function to reload the todo list
     console.log(data);
+    reset(); // Reset the form fields after submission
   };
 
   return (
