@@ -12,3 +12,11 @@ const todoItems = [];
   export const getTodos = () => {
     return todoItems;
   }
+
+  export const deleteTodo = (id) => {
+  const index = todoItems.findIndex((item) => item.id === id);
+  if (index !== -1) {
+    todoItems.splice(index, 1); // Remove the todo from the array
+    console.log(`Todo with id ${id} deleted`);
+  }
+};

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TodoCard = ({ todoItems }) => {
+const TodoCard = ({ todoItems, onDelete }) => {
   return (
     <div className="container w-75 bg-white border rounded p-3 my-4">
       <div className="card mt-3">
@@ -60,6 +60,7 @@ const TodoCard = ({ todoItems }) => {
                     <button
                       className="delete-btn btn btn-sm btn-outline-secondary"
                       title="Delete"
+                      onClick={() => onDelete(item.id)}
                     >
                       <i className="bi bi-trash"></i>
                     </button>
