@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
-const TodoCard = ({ todoItems, onDelete }) => {
+const TodoCard = ({ todoItems, onDelete, onToggleDone }) => {
+
+const getButtonClasses = (done) =>
+  done ? "btn btn-sm btn-success text-black border-dark btn-outline" : "btn btn-sm btn-outline-secondary";
+
   return (
     <div className="container w-75 bg-white border rounded p-3 my-4">
       <div className="card mt-3">
@@ -35,7 +39,7 @@ const TodoCard = ({ todoItems, onDelete }) => {
           </li>
         ) : (
           todoItems.map((item) => (
-            <div id="card-body" className="card-body border" key={item.id}>
+            <div id="card-body" className={`card-body border ${item.done ? "bg-success" : ""}`} key={item.id}>
               <div className="row align-items-center">
                 <div className="col-md-6">
                   <h5 className="card-title mb-0">{item.title}</h5>
@@ -46,19 +50,21 @@ const TodoCard = ({ todoItems, onDelete }) => {
                   </div>
                   <div className="btn-group">
                     <button
-                      className="mark-as-done btn btn-sm btn-outline-secondary"
+                      className={getButtonClasses(item.done)}
                       title="Mark as done"
+                      onClick={() => {onToggleDone(item.id)}}
                     >
                       <i className="bi bi-check-circle"></i>
                     </button>
                     <button
-                      className="btn btn-sm btn-outline-secondary"
+                      className={getButtonClasses(item.done)}
                       title="Edit"
+              
                     >
                       <i className="bi bi-pencil"></i>
                     </button>
                     <button
-                      className="delete-btn btn btn-sm btn-outline-secondary"
+                      className={getButtonClasses(item.done)}
                       title="Delete"
                       onClick={() => onDelete(item.id)}
                     >
