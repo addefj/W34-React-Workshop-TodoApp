@@ -3,7 +3,6 @@ import { addTodo } from "./todoService";
 import { useForm } from "react-hook-form";
 
 const TodoForm = ({ onAddTodo }) => {
-  
   const [selectedFiles, setSelectedFiles] = useState([]); // State to hold selected attachments
 
   const handleFileSelection = (e) => {
@@ -38,7 +37,7 @@ const TodoForm = ({ onAddTodo }) => {
   };
 
   return (
-    <div className="container w-75 bg-white border rounded p-3 mt-4">
+    <div className="container w-75 todoForm border rounded p-3 mt-4">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label htmlFor="title" className="form-label">
@@ -49,7 +48,7 @@ const TodoForm = ({ onAddTodo }) => {
           )}
           <input
             type="text"
-            className="form-control"
+            className="form-control input-custom"
             id="title"
             placeholder="Enter title"
             name="title"
@@ -67,7 +66,7 @@ const TodoForm = ({ onAddTodo }) => {
             </div>
           )}
           <textarea
-            className="form-control"
+            className="form-control input-custom"
             rows="3"
             id="description"
             placeholder="Enter description"
@@ -88,7 +87,7 @@ const TodoForm = ({ onAddTodo }) => {
             )}
             <input
               type="date"
-              className="form-control"
+              className="form-control input-custom"
               id="date"
               name="date"
               {...register("due", { required: "Due date is required" })}
@@ -100,14 +99,14 @@ const TodoForm = ({ onAddTodo }) => {
               Assign to Person (Optional)
             </label>
             <select
-              className="form-select"
+              className="form-select input-custom"
               id="assignee"
               name="assignee"
               {...register("assignee")}
             >
               <option value="">--Select Person (Optional)--</option>
               <option value="Sven">Sven</option>
-              <option value="Karl">Karl</option>
+              <option value="Lovisa">Lovisa</option>
               <option value="John">John</option>
             </select>
           </div>
@@ -120,12 +119,18 @@ const TodoForm = ({ onAddTodo }) => {
           <div className="input-group">
             <input
               type="file"
-              className="form-control"
+              className="form-control d-none input-custom"
               id="attachments"
               name="attachments"
               multiple
               onChange={handleFileSelection}
             />
+            <label
+              htmlFor="attachments"
+              className="btn input-custom"
+            >
+              📎 Select Files
+            </label>
             <button
               className="btn btn-outline-danger"
               type="button"
@@ -137,15 +142,20 @@ const TodoForm = ({ onAddTodo }) => {
           </div>
 
           {/* Preview file list */}
-          <ul className="list-group mt-3 border rounded p-2" id="fileList">
+          <ul className="list-group mt-3 border fileList rounded p-2" id="fileList">
             {selectedFiles.map((file, idx) => (
-              <li className="list-group-item border-0 p-0" key={file.name + file.lastModified}>{file.name}</li>
+              <li
+                className="list-group-item fileList border-0 p-0"
+                key={file.name + file.lastModified}
+              >
+                {file.name}
+              </li>
             ))}
           </ul>
         </div>
 
         <div className="mt-3 text-end">
-          <button type="submit" id="submitForm" className="btn btn-primary">
+          <button type="submit" id="submitForm" className="btn btn-outline-secondary btn-custom">
             + Add Todo
           </button>
         </div>

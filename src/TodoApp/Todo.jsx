@@ -26,7 +26,7 @@ const Todo = () => {
   }
 
   return (
-    <main className="col px-md-4 offset-lg-3">
+    <main className="col px-md-4 offset-lg-3 body">
       <Header />
       <SidebarHorizontal />
       <TodoForm onAddTodo={()=> setReload(!reload)} />

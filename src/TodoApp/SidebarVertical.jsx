@@ -2,7 +2,7 @@ import React from 'react';
 
 const SidebarVertical = () => {
   return (
-    <nav className="col-lg-3 d-none d-lg-block bg-white sidebar border-end vh-100 position-fixed">
+    <nav className="col-lg-3 d-none d-lg-block sidebarVertical border-end vh-100 position-fixed">
       <div className="d-flex flex-column h-100 p-3">
         <div className="flex-grow-1 w-100">
           <h4 className="mb-4">Menu</h4>
@@ -18,7 +18,7 @@ const SidebarVertical = () => {
               </a>
             </li>
             <li>
-              <a href="#" className="nav-link active">
+              <a href="#" className="nav-link link-dark">
                 <i className="bi bi-list-task"></i> Tasks
               </a>
             </li>
@@ -33,7 +33,7 @@ const SidebarVertical = () => {
         <div>
           <small>Username</small>
           <br />
-          <a href="#" className="text-decoration-none">
+          <a href="#" className="btn btn-custom link-dark">
             <i className="bi bi-box-arrow-right"></i> Logout
           </a>
         </div>

@@ -1,0 +1,40 @@
+.body,
+.btn-custom {
+  background-color: #f9b478;
+  color: black;
+}
+
+.todoCardContainer,
+.sidebarVertical,
+.todoForm {
+  background-color: #edab71;
+  color: black;
+}
+
+.todoCard,
+.input-custom,
+.fileList {
+  background-color: #fcd597;
+  color: black;
+}
+
+.input-custom:focus {
+  background-color: #f9b478;
+  color: black;
+  border-color: #f4a460;
+  box-shadow: none;
+}
+
+.btn-custom:hover,
+.nav-link:hover {
+  background-color: #b97539;
+  color: black; 
+}
+
+.border, .border-end, .border-bottom {
+  border-color: brown !important;
+}
+
+.todoCard {
+  border: 1px solid brown !important;
+}

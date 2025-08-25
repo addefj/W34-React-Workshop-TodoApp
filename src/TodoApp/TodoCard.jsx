@@ -3,11 +3,11 @@ import React from "react";
 const TodoCard = ({ todoItems, onDelete, onToggleDone }) => {
 
 const getButtonClasses = (done) =>
-  done ? "btn btn-sm btn-success text-black border-dark btn-outline" : "btn btn-sm btn-outline-secondary";
+  done ? "btn btn-sm btn-success text-black border-dark btn-outline" : "btn btn-sm btn-custom btn-outline-secondary";
 
   return (
-    <div className="container w-75 bg-white border rounded p-3 my-4">
-      <div className="card mt-3">
+    <div className="container w-75 todoCardContainer border rounded p-3 my-4">
+      <div className="card mt-3 todoCard">
         <div className="card-header">
           <div className="row align-items-center">
             <div className="col">
@@ -16,13 +16,13 @@ const getButtonClasses = (done) =>
             <div className="col-auto">
               <div className="btn-group">
                 <button
-                  className="btn btn-sm btn-outline-secondary"
+                  className="btn btn-sm btn-outline-secondary btn-custom"
                   title="Filter"
                 >
                   <i className="bi bi-funnel"></i>
                 </button>
                 <button
-                  className="btn btn-sm btn-outline-secondary"
+                  className="btn btn-sm btn-outline-secondary btn-custom"
                   title="Sort"
                 >
                   <i className="bi bi-sort-down"></i>
@@ -39,7 +39,7 @@ const getButtonClasses = (done) =>
           </li>
         ) : (
           todoItems.map((item) => (
-            <div id="card-body" className={`card-body border ${item.done ? "bg-success" : ""}`} key={item.id}>
+            <div id="card-body" className={`card-body ${item.done ? "bg-success" : ""}`} key={item.id}>
               <div className="row align-items-center">
                 <div className="col-md-6">
                   <h5 className="card-title mb-0">{item.title}</h5>
@@ -78,7 +78,7 @@ const getButtonClasses = (done) =>
 
               <div className="row gx-2 gy-0">
                 <div className="col-12 col-sm-auto">
-                  <small className="text-muted">
+                  <small className="text-muted" >
                     <i className="bi bi-calendar-event"></i> Due: {item.due}
                   </small>
                 </div>
