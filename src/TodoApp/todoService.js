@@ -28,3 +28,25 @@ export const toggleDone = (id) => {
     console.log(`Todo with id ${id} done status: ${todo.done}`);
   }
 };
+
+export const sortTodos = (sortType) => {
+  switch (sortType) {
+    case "dueAsc":
+      console.log("Sorting by due date ascending");
+      return [...todoItems].sort((a, b) => new Date(a.due) - new Date(b.due));
+    case "dueDesc":
+      console.log("Sorting by due date descending");
+      return [...todoItems].sort((a, b) => new Date(b.due) - new Date(a.due));
+    case "title":
+      console.log("Sorting by title A-Z");
+      return [...todoItems].sort((a, b) => a.title.localeCompare(b.title));
+    case "assignee":
+      console.log("Sorting by assignee");
+      return [...todoItems].sort((a, b) => a.assignee.localeCompare(b.assignee));
+    case "created":
+      console.log("Sorting by created date");
+      return [...todoItems].sort((a, b) => new Date(a.created) - new Date(b.created));
+    default:
+      return todoItems;
+  }
+};

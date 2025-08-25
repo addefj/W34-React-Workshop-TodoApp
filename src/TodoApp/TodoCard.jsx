@@ -1,9 +1,10 @@
 import React from "react";
 
-const TodoCard = ({ todoItems, onDelete, onToggleDone }) => {
-
-const getButtonClasses = (done) =>
-  done ? "btn btn-sm btn-success text-black border-dark btn-outline" : "btn btn-sm btn-custom btn-outline-secondary";
+const TodoCard = ({ todoItems, onDelete, onToggleDone, onSort }) => {
+  const getButtonClasses = (done) =>
+    done
+      ? "btn btn-sm btn-success text-black border-dark btn-outline"
+      : "btn btn-sm btn-custom btn-outline-secondary";
 
   return (
     <div className="container w-75 todoCardContainer border rounded p-3 my-4">
@@ -22,11 +23,55 @@ const getButtonClasses = (done) =>
                   <i className="bi bi-funnel"></i>
                 </button>
                 <button
-                  className="btn btn-sm btn-outline-secondary btn-custom"
+                  className="btn btn-sm btn-outline-secondary btn-custom dropdown-toggle"
                   title="Sort"
+                  data-bs-toggle="dropdown" 
+                  aria-expanded="false"
                 >
                   <i className="bi bi-sort-down"></i>
                 </button>
+                <ul className="dropdown-menu">
+                  <li>
+                    <button
+                      className="dropdown-item"
+                      onClick={() => onSort("dueAsc")}
+                    >
+                      Due Date ↑
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      className="dropdown-item"
+                      onClick={() => onSort("dueDesc")}
+                    >
+                      Due Date ↓
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      className="dropdown-item"
+                      onClick={() => onSort("title")}
+                    >
+                      Title A–Z
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      className="dropdown-item"
+                      onClick={() => onSort("assignee")}
+                    >
+                      Assignee
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      className="dropdown-item"
+                      onClick={() => onSort("created")}
+                    >
+                      Created
+                    </button>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -39,7 +84,11 @@ const getButtonClasses = (done) =>
           </li>
         ) : (
           todoItems.map((item) => (
-            <div id="card-body" className={`card-body ${item.done ? "bg-success" : ""}`} key={item.id}>
+            <div
+              id="card-body"
+              className={`card-body ${item.done ? "bg-success" : ""}`}
+              key={item.id}
+            >
               <div className="row align-items-center">
                 <div className="col-md-6">
                   <h5 className="card-title mb-0">{item.title}</h5>
@@ -52,14 +101,15 @@ const getButtonClasses = (done) =>
                     <button
                       className={getButtonClasses(item.done)}
                       title="Mark as done"
-                      onClick={() => {onToggleDone(item.id)}}
+                      onClick={() => {
+                        onToggleDone(item.id);
+                      }}
                     >
                       <i className="bi bi-check-circle"></i>
                     </button>
                     <button
                       className={getButtonClasses(item.done)}
                       title="Edit"
-              
                     >
                       <i className="bi bi-pencil"></i>
                     </button>
@@ -78,7 +128,7 @@ const getButtonClasses = (done) =>
 
               <div className="row gx-2 gy-0">
                 <div className="col-12 col-sm-auto">
-                  <small className="text-muted" >
+                  <small className="text-muted">
                     <i className="bi bi-calendar-event"></i> Due: {item.due}
                   </small>
                 </div>

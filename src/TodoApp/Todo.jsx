@@ -4,7 +4,7 @@ import Header from "./Header";
 import TodoForm from "./TodoForm";
 import TodoCard from "./TodoCard";
 import SidebarHorizontal from "./SidebarHorizontal";
-import {getTodos, addTodo, deleteTodo, toggleDone} from "./todoService";
+import {getTodos, addTodo, deleteTodo, toggleDone, sortTodos} from "./todoService";
 
 const Todo = () => {
 
@@ -25,12 +25,17 @@ const Todo = () => {
     setReload(!reload);  // Trigger reload
   }
 
+  const handleSortTodos = (sortType) => {
+  const sorted = sortTodos(sortType);
+  setTodoItems(sorted);
+};
+
   return (
     <main className="col px-md-4 offset-lg-3 body">
       <Header />
       <SidebarHorizontal />
       <TodoForm onAddTodo={()=> setReload(!reload)} />
-      <TodoCard todoItems={todoItems} onDelete={handleDelete} onToggleDone={handleToggleDone} />
+      <TodoCard todoItems={todoItems} onDelete={handleDelete} onToggleDone={handleToggleDone} onSort={handleSortTodos} />
     </main>
   );
 };
